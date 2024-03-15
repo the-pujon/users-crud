@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userController = require('./src/Controllers/users.controllers');
 require('dotenv').config()
+const cors = require('cors')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,7 @@ db.once('open', () => {
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
+app.use(cors())
 
 // CRUD Routes
 app.post('/users', userController.createUser);
