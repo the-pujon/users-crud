@@ -7,6 +7,7 @@ require('dotenv').config()
 const cors = require('cors')
 
 const app = express();
+app.use(cors())
 const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -22,7 +23,7 @@ db.once('open', () => {
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
-app.use(cors())
+
 
 // CRUD Routes
 app.post('/users', userController.createUser);
